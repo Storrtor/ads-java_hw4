@@ -123,13 +123,8 @@ public class LinkedDeque<E> extends TwoSideLinkedListImpl<E> implements Deque<E>
         NodeDeq<E> prev = null;
         NodeDeq<E> current = first;
 
-        while (current != null) {
-            prev = current;
-            current = current.next;
-        }
-
-        prev.next = current.next;
-        current.next = null;
+        prev = current.prev;
+        current.next = new NodeDeq<>(current, value, current.next);
         size++;
         return true;
     }
@@ -143,13 +138,8 @@ public class LinkedDeque<E> extends TwoSideLinkedListImpl<E> implements Deque<E>
         NodeDeq<E> prev = null;
         NodeDeq<E> current = first;
 
-        while (current != null) {
-            prev = current;
-            current = current.next;
-        }
-
-        prev.next = current.next;
-        current.next = null;
+        prev = current.prev;
+        current.next = new NodeDeq<>(prev, value, current.prev);
         size++;
         return true;
     }
