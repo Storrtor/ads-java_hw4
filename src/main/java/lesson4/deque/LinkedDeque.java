@@ -11,7 +11,7 @@ public class LinkedDeque<E> extends TwoSideLinkedListImpl<E> implements Deque<E>
     @Override
     public void insertFirst(E value) {
         NodeDeq<E> actualFirst = first;
-        NodeDeq<E> newFirst = new NodeDeq<>(value, actualFirst, null);
+        NodeDeq<E> newFirst = new NodeDeq<>(null, value, actualFirst);
         this.first = newFirst;
     }
 
@@ -38,7 +38,7 @@ public class LinkedDeque<E> extends TwoSideLinkedListImpl<E> implements Deque<E>
             insertLast(value);
             return;
         }
-        NodeDeq<E> addedNode = new NodeDeq<>(value, current, prev);
+        NodeDeq<E> addedNode = new NodeDeq<>(prev, value, current);
         prev.next = addedNode;
         size++;
     }
@@ -57,7 +57,7 @@ public class LinkedDeque<E> extends TwoSideLinkedListImpl<E> implements Deque<E>
             current = current.next;
         }
 
-        NodeDeq<E> newNode  = new NodeDeq<>(value, null, prev);
+        NodeDeq<E> newNode  = new NodeDeq<>(prev, value, null);
         last.next = newNode;
         last = newNode;
     }
