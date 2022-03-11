@@ -13,7 +13,7 @@ public class TwoSideLinkedListImpl<E> extends SimpleLinkedListImpl<E> implements
     }
 
     //3. Реализовать метод insert в классе списка
-    public void insert(int index, E value) { // 2 133
+    public void insert(int index, E value) { // 2 13
         Node<E> prev = null;
         Node<E> current = first;
         int num = 0;

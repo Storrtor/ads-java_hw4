@@ -146,7 +146,7 @@ public class SimpleLinkedListImpl<E> implements LinkedList<E>, Iterable<E> {
         }
 
         public void reset() {
-
+            current = (Node<E>) first;
         }
     }
 }
