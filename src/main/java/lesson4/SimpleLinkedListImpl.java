@@ -1,6 +1,8 @@
 package lesson4;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class SimpleLinkedListImpl<E> implements LinkedList<E>, Iterable<E> {
     protected int size;
@@ -116,10 +118,35 @@ public class SimpleLinkedListImpl<E> implements LinkedList<E>, Iterable<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return null/*new ListIterator<>()*/;
+        return new ListIterator<>();
     }
 
-    private class ListIterator<E> /*implements Iterator<E>*/ {
+    //2. Реализовать итератор
+    private class ListIterator<E> implements Iterator<E> {
 
+        Node<E> current = (Node<E>) first;
+        E returnItem;
+
+        @Override
+        public boolean hasNext() {
+            if (current == null) {
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        public E next() {
+            if (current != null){
+                returnItem = current.item;
+                current = current.next;
+                return returnItem;
+            }
+            return null;
+        }
+
+        public void reset() {
+            current = (Node<E>) first;
+        }
     }
 }

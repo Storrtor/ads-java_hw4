@@ -12,6 +12,35 @@ public class TwoSideLinkedListImpl<E> extends SimpleLinkedListImpl<E> implements
         }
     }
 
+    //3. Реализовать метод insert в классе списка
+    public void insert(int index, E value) { // 2 13
+        Node<E> prev = null;
+        Node<E> current = first;
+        int num = 0;
+
+        while (current != null) {
+            if (num == index) {
+                break;
+            }
+            num++;
+            prev = current;
+            current = current.next;
+        }
+
+        if (current == first) {
+            insertFirst(value);
+            return;
+        }
+        if (current == last) {
+            insertLast(value);
+            return;
+        }
+        Node<E> addedNode = new Node<>(value, current);
+        prev.next = addedNode;
+        size++;
+
+    }
+
     @Override
     public void insertLast(E value) {
         if (isEmpty()) {
@@ -20,7 +49,7 @@ public class TwoSideLinkedListImpl<E> extends SimpleLinkedListImpl<E> implements
         }
 
         last.next = last  = new Node<>(value, null);
-//        newNode  = new Node<>(value, null);
+//        Node<E> newNode  = new Node<>(value, null);
 //        last.next = newNode;
 //        last = newNode;
         size++;
